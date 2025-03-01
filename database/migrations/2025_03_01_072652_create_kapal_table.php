@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('kapal', function (Blueprint $table) {
             $table->id();
+            $table->file('foto');
+            $table->string('nama_kapal');
+            $table->string('jenis_kapal');
+            $table->string('karyawan_id');            
             $table->timestamps();
         });
     }
