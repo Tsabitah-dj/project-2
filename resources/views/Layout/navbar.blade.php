@@ -36,4 +36,9 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 pengiriman
                             </a>
+
+                            <a class="nav-link" href="{{route('pengiriman.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Transportasi
+                            </a>
                         </div>
