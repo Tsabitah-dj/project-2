@@ -18,23 +18,24 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login ke Panel Admin</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login ke System</h3></div>
                                     <div class="card-body">
-                                        <form class= "user" action= '/sesi/login' method="POST">
+                                        <form class="user" action="/sesi/login" method="POST">
                                             @csrf
 
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail"  placeholder="Masukan Alamat Email">Masukan Email Anda
+                                                <input class="form-control form-control-user" id="inputEmail" type="email" name="email" placeholder="name@example.com" required />
+                                                <label for="inputEmail">Masukan Email Anda</label>
                                             </div>
+
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Masukan Password Anda
+                                                <input class="form-control form-control-user" id="inputPassword" type="password" name="password" placeholder="Password" required />
+                                                <label for="inputPassword">Masukan Password Anda</label>
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="btn btn-primary" href="{{route('Dashboard')}}">Login</a>
+
+                                            <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+                                                <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                             </div>
-                                          
                                         </form>
                                     </div>
                                 </div>

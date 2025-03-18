@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\karyawan;
+use App\Models\Karyawan;
 
 class KaryawanController extends Controller
 {
@@ -13,7 +13,7 @@ class KaryawanController extends Controller
     public function index()
     {
         $karyawan = Karyawan::all();
-        return view('karyawan.index',['karyawan'=>$karyawan]);
+        return view('karyawan.index', ['karyawan' => $karyawan]);
     }
 
     /**
@@ -29,30 +29,22 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'nip' =>'required',
+            'nip' => 'required',
             'nama_karyawan' => 'required',
             'gaji_karyawan' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
-        ],[
-            'nip.required' => 'Nip Tidak Boleh Kosong',
-            'nama_karyawan.required' => 'Nama Tidak Boleh Kosong',
-            'gaji_karyawan.required' => 'Gaji Tidak Boleh Kosong',
-            'alamat.required' => 'Tidak Boleh Kosong',
-            'jenis_kelamin.required' => 'Tidak Boleh Kosong',
+        ], [
+            'nip.required' => 'NIP tidak boleh kosong',
+            'nama_karyawan.required' => 'Nama tidak boleh kosong',
+            'gaji_karyawan.required' => 'Gaji tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
         ]);
 
-        $karyawan = [
-            'nip' => $request->input('nip'),
-            'nama_karyawan' => $request->input('nama_karyawan'),
-            'gaji_karyawan' => $request->input('gaji_karyawan'),
-            'alamat' => $request->input('alamat'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-        ];
-        Karyawan::create($karyawan);
-        return redirect('karyawan')->with('karyawan berhasil ditambahkan');
+        Karyawan::create($request->all());
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil ditambahkan');
     }
 
     /**
@@ -60,7 +52,7 @@ class KaryawanController extends Controller
      */
     public function show(Karyawan $karyawan)
     {
-        //
+        // Implement show logic if needed
     }
 
     /**
@@ -75,32 +67,42 @@ class KaryawanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Karyawan $karyawan)
+    public function update(Request $request, $id)
     {
+        $karyawan = Karyawan::where('nip', $id)->first();
+        if (!$karyawan) {
+            return redirect()->route('karyawan.index')->with('error', 'Karyawan tidak ditemukan');
+        }
+
         $request->validate([
-            'nip' =>'required',
+            'nip' => 'required',
             'nama_karyawan' => 'required',
             'gaji_karyawan' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
-        ],[
-            'nip.required' => 'Nip Tidak Boleh Kosong',
-            'nama_karyawan.required' => 'Nama Tidak Boleh Kosong',
-            'gaji_karyawan.required' => 'Gaji Tidak Boleh Kosong',
-            'alamat.required' => 'Tidak Boleh Kosong',
-            'jenis_kelamin.required' => 'Tidak Boleh Kosong',
+        ], [
+            'nip.required' => 'NIP tidak boleh kosong',
+            'nama_karyawan.required' => 'Nama tidak boleh kosong',
+            'gaji_karyawan.required' => 'Gaji tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
         ]);
 
         $karyawan->update($request->all());
-        return redirect('Karyawan')->with('karyawan berhasil diupdate');
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Karyawan $karyawan)
+    public function destroy($id)
     {
+        $karyawan = Karyawan::where('nip', $id)->first();
+        if (!$karyawan) {
+            return redirect()->route('karyawan.index')->with('error', 'Karyawan tidak ditemukan');
+        }
+
         $karyawan->delete();
-        return redirect('Karyawan')->with('karyawan berhasil dihapus');
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil dihapus');
     }
 }

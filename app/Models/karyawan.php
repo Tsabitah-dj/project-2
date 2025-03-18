@@ -16,4 +16,9 @@ class karyawan extends Model
     {
         return $this->hasMany('App\Models\pengiriman');
     }
+
+    public function transportasi()
+    {
+        return $this->hasMany('App\Models\transportasi');
+    }
 }

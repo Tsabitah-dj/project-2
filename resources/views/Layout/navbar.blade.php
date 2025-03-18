@@ -5,7 +5,8 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="sesi">Logout</a></li>
+                        <li><a class="dropdown-item" href="sesi" onclick="return confirm('Anda Akan Logout')">Logout</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -37,7 +38,7 @@
                                 pengiriman
                             </a>
 
-                            <a class="nav-link" href="{{route('pengiriman.index')}}">
+                            <a class="nav-link" href="{{route('transportasi.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Transportasi
                             </a>

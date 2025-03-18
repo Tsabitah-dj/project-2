@@ -47,6 +47,13 @@
     <table id="datatablesSimple">
         <a class="btn btn-primary mb-3" href="{{ route('karyawan.create') }}">Tambah Data</a>
         <div class="table-responsive">
+        <div>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <thead>
                 <tr>
                     <th>No</th>
@@ -60,26 +67,28 @@
             </thead>
 
             <tbody>
-                @php $no = 1 @endphp
-                @foreach($karyawan as $karyawan)
-                    <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>{{ $karyawan->nip }}</td>
-                        <td>{{ $karyawan->nama_karyawan }}</td>
-                        <td>{{ $karyawan->jenis_kelamin }}</td>
-                        <td>{{ $karyawan->gaji_karyawan }}</td>
-                        <td>{{ $karyawan->alamat }}</td>
+               @php $no = 1 @endphp
 
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="{{ route('karyawan.edit', $karyawan->nip) }}">Edit</a>
-                            <form action="{{ route('karyawan.destroy', $karyawan->nip) }}" method="POST" style="display: inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda Mau Menghapus Data Ini ?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+    @foreach($karyawan as $item)
+        <tr>
+            <td>{{ $no++ }}</td>
+            <td>{{ $item->nip }}</td>
+            <td>{{ $item->nama_karyawan }}</td>
+            <td>{{ $item->jenis_kelamin }}</td>
+            <td>{{ $item->gaji_karyawan }}</td>
+            <td>{{ $item->alamat }}</td>
+
+            <td>
+                <a class="btn btn-sm btn-primary" href="{{ route('karyawan.edit', $item->nip) }}">Edit</a>
+
+                <form action="{{ route('karyawan.destroy', $item->nip) }}" method="POST" style="display: inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda Mau Menghapus Data Ini ?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
             </tbody>
         </div>
     </table>

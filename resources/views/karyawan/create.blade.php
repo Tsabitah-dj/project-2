@@ -12,7 +12,7 @@
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
+            <disv id="layoutAuthentication_content">
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
