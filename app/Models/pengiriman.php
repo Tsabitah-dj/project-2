@@ -10,12 +10,8 @@ class pengiriman extends Model
     use HasFactory;
     protected $table = 'pengiriman';
     protected $primarykey = 'id';
-    protected $fillable = ['karyawan_id','barang_id','jumlah','alamat'];
+    protected $fillable = ['username','barang_id','jumlah','alamat'];
 
-    public function karyawan()
-    {
-        return $this->belongsTo('App\Models\karyawan');
-    }
 
     public function barang()
     {

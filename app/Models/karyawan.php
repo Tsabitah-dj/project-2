@@ -12,10 +12,7 @@ class karyawan extends Model
     // protected $primarykey = 'id';
     protected $fillable = ['nip','nama_karyawan','gaji_karyawan','alamat','jenis_kelamin'];
 
-    public function pengiriman()
-    {
-        return $this->hasMany('App\Models\pengiriman');
-    }
+   
 
     public function transportasi()
     {

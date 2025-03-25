@@ -23,9 +23,8 @@ class PengirimanController extends Controller
      */
     public function create()
     {
-        $karyawan = karyawan::all();
         $barang = barang::all();
-        return view('pengiriman.create', compact('karyawan', 'barang'));
+        return view('pengiriman.create', compact( 'barang'));
     }
 
     /**
@@ -35,7 +34,7 @@ class PengirimanController extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'karyawan_id' => 'required|exists:karyawan,id',
+            'username' => 'required|string|max:255',
             'barang_id' => 'required|exists:barang,id',
             'jumlah' => 'required|integer|min:1',
             'alamat' => 'required|string|max:255',
@@ -43,7 +42,7 @@ class PengirimanController extends Controller
 
         // Create a new pengiriman instance
         $pengiriman = new pengiriman();
-        $pengiriman->karyawan_id = $request->karyawan_id;
+        $pengiriman->username = $request->username;
         $pengiriman->barang_id = $request->barang_id;
         $pengiriman->jumlah = $request->jumlah;
         $pengiriman->alamat = $request->alamat;
@@ -59,7 +58,7 @@ class PengirimanController extends Controller
      */
     public function show(pengiriman $pengiriman)
     {
-        //
+        return view('pengiriman.review', compact('pengiriman'));
     }
 
     /**
@@ -68,9 +67,8 @@ class PengirimanController extends Controller
     public function edit(pengiriman $pengiriman)
     {
         // Retrieve the existing pengiriman data
-        $karyawan = karyawan::all();
         $barang = barang::all();
-        return view('pengiriman.edit', compact('pengiriman', 'karyawan', 'barang'));
+        return view('pengiriman.edit', compact('pengiriman', 'barang'));
     }
 
     /**
@@ -80,14 +78,14 @@ class PengirimanController extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'karyawan_id' => 'required|exists:karyawan,id',
+            'username' => 'required|string|max:225',
             'barang_id' => 'required|exists:barang,id',
             'jumlah' => 'required|integer|min:1',
             'alamat' => 'required|string|max:255',
         ]);
 
         // Update the existing pengiriman instance
-        $pengiriman->karyawan_id = $request->karyawan_id;
+        $pengiriman->username = $request->username;
         $pengiriman->barang_id = $request->barang_id;
         $pengiriman->jumlah = $request->jumlah;
         $pengiriman->alamat = $request->alamat;
