@@ -15,8 +15,19 @@ class SessionController extends Controller
         return view('sesi/index');
     }
     
-    public function login(Request $request){
+    public function login(Request $request) {
+        if (Auth::check()) {
+            return redirect()->route('Dashboard')->with('success', 'Anda sudah login');
+        }
         Session::flash('email', $request->email);
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ], [
+            'email.required' => 'Email Wajib Diisi',
+            'password.required' => 'Password Wajib Diisi',
+        ]);
 
         $request->validate([
             'email' => 'required',

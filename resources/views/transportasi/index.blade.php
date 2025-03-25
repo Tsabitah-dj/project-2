@@ -49,6 +49,11 @@
    <table id="datatablesSimple">
     <a class="btn btn-primary mb-3" href="{{ route('transportasi.create') }}">Tambah Data</a>
     <div class="table-responsive">
+    @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
         <thead>
             <tr>
                 <th>Kode Kendaraan</th>

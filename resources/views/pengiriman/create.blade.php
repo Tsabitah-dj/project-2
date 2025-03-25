@@ -23,16 +23,12 @@
                                     <form action="{{ route('pengiriman.store') }}" method="POST">
                                      @csrf
                                     <div class="mb-3">
-                                       <label for="karyawan_id" class="form-label">Karyawan</label>
-                                            <select name="karyawan_id" id="karyawan_id" class="form-select" required>
-                                                    <option value="">Select Karyawan</option>
-                                                    @foreach($karyawan as $karyawan)
-                                                    <option value="{{ $karyawan->id }}">{{ $karyawan->nama_karyawan }}</option>
-                                                    @endforeach
-                                            </select>
+                                       <label for="username" class="form-label">Username</label>
+                                       <input type="text" name="username" id="username" class="form-control" required />
+                                          
                                     </div>
                                    <div class="mb-3">
-                                       <label for="barang_id" class="form-label">Barang</label>
+                                       <label for="barang_id" class="form-label">Nama Barang</label>
                                            <select name="barang_id" id="barang_id" class="form-select" required>
                                                <option value="">Select Barang</option>
                                                @foreach($barang as $barang)

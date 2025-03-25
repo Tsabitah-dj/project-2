@@ -50,7 +50,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Karyawan</th>
+                <th>Username</th>
                 <th>Nama Barang</th>
                 <th>Jumlah barang</th>
                 <th>Alamat</th>
@@ -63,11 +63,12 @@
             @foreach($pengiriman as $pengiriman)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $pengiriman->karyawan->nama_karyawan }}</td>
+                    <td>{{ $pengiriman->username}}</td>
                     <td>{{ $pengiriman->barang->nama_barang }}</td>
                     <td>{{ $pengiriman->jumlah }}</td>
                     <td>{{ $pengiriman->alamat }}</td>
                     <td>
+                        <a class="btn btn-sm btn-success" href="{{ route('pengiriman.show', $pengiriman->id) }}">Review</a>
                         <a class="btn btn-sm btn-primary" href="{{ route('pengiriman.edit', $pengiriman->id) }}">Edit</a>
                         <form action="{{ route('pengiriman.destroy', $pengiriman->id) }}" method="POST" style="display: inline-block">
                             @csrf
